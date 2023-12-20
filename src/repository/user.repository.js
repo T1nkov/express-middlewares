@@ -47,3 +47,6 @@ function deleteById(id) {
   return filterArr;
 }
 module.exports = { userRepository, createData, updateUserData,deleteById };
+
+
+// фва
