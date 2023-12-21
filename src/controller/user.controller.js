@@ -5,6 +5,8 @@ const {
   getData,
   updateData,
   deleteUser,
+  changeName1,
+  changeEmail,
 } = require("../service/user.service");
 
 const route = express.Router();
@@ -26,15 +28,7 @@ route.get("/:id", (req, res) => {
   }
 });
 
-route.post("/", (req, res) => {
-  try {
-    res.status(200).send(getUserById(id));
-  } catch (error) {
-    res.status(404).send(error.message);
-  }
-});
-
-route.post("/cl ", (req, res) => {
+route.post("/ ", (req, res) => {
   try {
     const { name, surname, email, pwd } = req.body;
     res.status(200).send(getData(name, surname, email, pwd));
@@ -61,4 +55,15 @@ route.delete("/:id", (req, res) => {
     res.status(404).send(error.message);
   }
 });
+
+route.patch("/:id", (req, res) => {
+  try {
+    const { id } = req.params;
+    const body = req.body;
+    res.status(200).send(changeName1(id, body));
+  } catch (error) {
+    res.status(404).send(error.message);
+  }
+});
+
 module.exports = { route };

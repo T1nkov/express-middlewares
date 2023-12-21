@@ -3,6 +3,7 @@ const {
   createData,
   updateUserData,
   deleteById,
+  changeName,
 } = require("../repository/user.repository");
 
 function getAllUser() {
@@ -28,4 +29,15 @@ function updateData(id, name, surname, email, pwd) {
 function deleteUser(id) {
   return deleteById(id);
 }
-module.exports = { getAllUser, getUserById, getData, updateData, deleteUser };
+
+function changeName1(id, body) {
+  return changeName(id, body);
+}
+module.exports = {
+  getAllUser,
+  getUserById,
+  getData,
+  updateData,
+  deleteUser,
+  changeName1,
+};
