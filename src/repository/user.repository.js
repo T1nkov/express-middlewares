@@ -58,6 +58,7 @@ function changeName(id, body) {
   arr[index] = { ...item, ...body };
   fs.writeFileSync("./src/repository/storage.json", JSON.stringify(arr));
   return arr;
+  arr[index]
 }
 
 module.exports = {
