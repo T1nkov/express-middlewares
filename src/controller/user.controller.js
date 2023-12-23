@@ -39,7 +39,7 @@ route.post("/ ", (req, res) => {
   }
 });
 
-route.put("/:id", (req, res) => {
+route.put("/:id", isValidUser, isValidUserId, (req, res) => {
   try {
     const { id } = req.params;
     const { name, surname, email, pwd } = req.body;
@@ -49,7 +49,7 @@ route.put("/:id", (req, res) => {
   }
 });
 
-route.delete("/:id", (req, res) => {
+route.delete("/:id", isValidUserId, (req, res) => {
   try {
     const { id } = req.params;
     res.status(200).send(deleteUser(id));
@@ -58,7 +58,7 @@ route.delete("/:id", (req, res) => {
   }
 });
 
-route.patch("/:id", (req, res) => {
+route.patch("/:id", isValidUserId, (req, res) => {
   try {
     const { id } = req.params;
     const body = req.body;
@@ -68,7 +68,7 @@ route.patch("/:id", (req, res) => {
   }
 });
 
-route.patch("/:id", (req, res) => {
+route.patch("/:id", isValidUserId, (req, res) => {
   try {
     const { id } = req.params;
     const dataId = getUserById(id);
@@ -78,14 +78,14 @@ route.patch("/:id", (req, res) => {
   }
 });
 
+route.patch("/:id", isValidUserId, (req, res) => {
+  try {
+    const { id } = req.params;
+    const dataId = getUserById(id);
+    res.status(200).send(dataId);
+  } catch (error) {
+    res.status(404).send(error.message);
+  }
+});
 
-route.patch("/:id", (req, res) => {
-    try {
-      
-      res.status(200).send(isValidUser(req,res));
-    } catch (error) {
-      res.status(404).send(error.message);
-    }
-  });
-  
 module.exports = { route };
