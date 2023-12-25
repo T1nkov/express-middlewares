@@ -10,7 +10,7 @@ const {
 } = require("../service/user.service");
 
 const { isValidUser, isValidUserId } = require("../helper/helper");
-const { send } = require("express/lib/response");
+
 const route = express.Router();
 
 route.get("/", (req, res) => {
@@ -63,6 +63,16 @@ route.patch("/:id", isValidUserId, (req, res) => {
     const { id } = req.params;
     const body = req.body;
     res.status(200).send(changeName1(id, body));
+  } catch (error) {
+    res.status(404).send(error.message);
+  }
+});
+
+route.patch("/:id", isValidUserId, (req, res) => {
+  try {
+    const { id } = req.params;
+    const dataId = getUserById(id);
+    res.status(200).send(dataId);
   } catch (error) {
     res.status(404).send(error.message);
   }
